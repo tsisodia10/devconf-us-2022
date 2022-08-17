@@ -17,7 +17,7 @@ route:
 receivers:
 - name: "slack"
   slack_configs:
-  - api_url: 'https://hooks.slack.com/services/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'
+  - api_url: '<url>'
     channel: '#monitoring'    
     send_resolved: true
     title: |-
