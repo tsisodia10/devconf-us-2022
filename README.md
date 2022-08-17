@@ -26,9 +26,9 @@ spec:
 oc apply -f catalogSource.yaml
 ```
 
-2. Install the operator on Operator Hub
+2. Install the Observability Operator on Operator Hub
 
-3. Deploy application
+3. Deploy Blue app
 ```
 apiVersion: v1
 kind: Service
