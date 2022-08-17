@@ -1,0 +1,39 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule 
+metadata:
+  creationTimestamp: null
+  labels:
+    prometheus: blue
+    role: alert-rules
+  name: blue-rules
+  namespace: monitor
+spec:
+  groups:
+  - name: recording_rules
+    interval: 2s
+    rules: 
+    - record: blue_requests_per_minute
+      expr: increase(http_requests_total{container="blue"}[1m])
+  - name: LoadRules
+    rules: 
+    - alert: HighLoadBlue
+      expr: blue_requests_per_minute >= 30 
+      labels:
+        severity: page # or critical 
+      annotations:
+        summary: "high load average"
+        description: "high load average"
+    - alert: MediumLoadBlue
+      expr: blue_requests_per_minute >= 25 
+      labels:
+        severity: warn 
+      annotations:
+        summary: "medium load average"
+        description: "medium load average" 
+    - alert: LowLoadBlue
+      expr: blue_requests_per_minute >= 20 
+      labels:
+        severity: acknowledged
+      annotations:
+        summary: "low load average"
+        description: "low load average" 
